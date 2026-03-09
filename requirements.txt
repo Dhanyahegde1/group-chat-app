@@ -1,0 +1,29 @@
+Django==4.2.11
+djangorestframework==3.15.1
+
+# WebSockets
+channels==4.0.0
+channels-redis==4.2.0
+
+# Redis
+redis==5.0.4
+
+# PostgreSQL
+psycopg2-binary==2.9.9
+
+# Authentication & Security
+djangorestframework-simplejwt==5.3.1
+python-dotenv==1.0.1
+
+# File uploads
+Pillow==10.3.0
+
+# CORS for React
+django-cors-headers==4.3.1
+
+# ASGI server
+daphne==4.1.0
+
+# Utilities
+asgiref==3.8.1
+sqlparse==0.5.0
