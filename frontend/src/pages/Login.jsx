@@ -1,25 +1,75 @@
 import { useState } from "react";
+import { loginUser } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [username, setUsername] = useState("");
 
-  const handleLogin = () => {
-    localStorage.setItem("username", username);
-    window.location.href = "/chat";
+   const navigate = useNavigate(); 
+  const [form, setForm] = useState({
+    username: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    try {
+
+      const res = await loginUser(form);
+
+      localStorage.setItem("token", res.data.token);
+
+      alert("Login successful");
+
+    } catch (error) {
+
+      console.error(error);
+
+    }
+
   };
 
   return (
     <div>
+
       <h2>Login</h2>
 
-      <input
-        placeholder="Enter username"
-        onChange={(e) => setUsername(e.target.value)}
-      />
+      <form onSubmit={handleSubmit}>
 
-      <button onClick={handleLogin}>
-        Join Chat
+        <input
+          name="username"
+          placeholder="Username"
+          onChange={handleChange}
+        />
+
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          onChange={handleChange}
+        />
+
+        <button type="submit">
+          Login
+        </button>
+
+      </form>
+       <br />
+
+      <button onClick={() => navigate("/register")}>
+
+        Create Account
+
       </button>
+
     </div>
   );
 }
