@@ -20,8 +20,21 @@ export const createChannel = (data) => API.post("/channels", data);
 
 function App() {
   return (
+    
     <Router>
+      <div className="particles">
+  {Array.from({length:25}).map((_,i)=>(
+    <span key={i}
+      style={{
+        left:Math.random()*100+"%",
+        animationDuration:(5+Math.random()*10)+"s",
+        animationDelay:(Math.random()*5)+"s"
+      }}
+    ></span>
+  ))}
+</div>
       <Routes>
+        
         <Route path="/" element={<Login />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/register" element={<Register />} />

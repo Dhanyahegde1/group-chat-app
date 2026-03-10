@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { loginUser } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import "../styles/styles.css";
 
 function Login() {
 
@@ -38,7 +39,14 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="auth-card">
+      <div className="app-title">
+    ChatRoom
+  </div>
+
+  <div className="app-subtitle">
+    Group Chat Application
+  </div>
 
       <h2>Login</h2>
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { registerUser } from "../services/api";
 import { useNavigate } from "react-router-dom";
-
+import "../styles/styles.css";
 
 function Register() {
 
@@ -32,7 +32,14 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className="auth-card">
+      <div className="app-title">
+    ChatRoom
+  </div>
+
+  <div className="app-subtitle">
+    Group Chat Application
+  </div>
 
       <h2>Register</h2>
 
