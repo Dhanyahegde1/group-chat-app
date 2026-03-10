@@ -1,0 +1,21 @@
+2026-03-10 12:19:30,095 INFO websocket User connected to room: general
+2026-03-10 12:22:49,893 INFO websocket User disconnected from room: general
+2026-03-10 12:43:49,291 INFO websocket User connected to room: general
+2026-03-10 12:44:09,721 INFO websocket Message received: hello
+2026-03-10 12:54:10,677 INFO websocket User disconnected from room: general
+2026-03-10 13:05:27,845 INFO websocket User connected to room: general
+2026-03-10 13:05:50,505 INFO websocket Message received: hello server
+2026-03-10 13:06:45,247 INFO websocket Message received: hello server
+2026-03-10 13:08:06,901 INFO websocket User disconnected from room: general
+2026-03-10 13:08:13,891 INFO websocket User connected to room: general
+2026-03-10 13:08:39,138 INFO websocket Message received: Hello from Postman
+2026-03-10 13:10:11,575 INFO websocket User disconnected from room: general
+2026-03-10 14:29:43,281 INFO websocket User connected to room: general
+2026-03-10 14:30:00,805 INFO websocket User connected to room: general
+2026-03-10 14:32:46,570 INFO websocket User connected to room: general
+2026-03-10 14:33:17,744 INFO websocket Message received: hello
+2026-03-10 14:33:28,186 INFO websocket User disconnected from room: general
+2026-03-10 14:35:12,817 INFO websocket User connected to room: general
+2026-03-10 14:35:29,749 INFO websocket Message received: hello
+2026-03-10 14:36:57,495 INFO websocket User connected to room: general
+2026-03-10 14:37:48,111 INFO websocket Message received: hello
