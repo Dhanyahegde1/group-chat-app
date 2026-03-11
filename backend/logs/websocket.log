@@ -19,3 +19,42 @@
 2026-03-10 14:35:29,749 INFO websocket Message received: hello
 2026-03-10 14:36:57,495 INFO websocket User connected to room: general
 2026-03-10 14:37:48,111 INFO websocket Message received: hello
+2026-03-11 12:27:59,353 INFO websocket User connected to room: general
+2026-03-11 12:28:15,799 INFO websocket Message received: hello
+2026-03-11 14:30:07,912 INFO websocket User connected to room: general
+2026-03-11 14:31:34,751 INFO websocket User connected to room: general
+2026-03-11 14:32:02,053 INFO websocket Message received: helloo
+2026-03-11 14:33:27,398 INFO websocket User connected to room: general
+2026-03-11 14:33:57,409 INFO websocket Message received: heii
+2026-03-11 14:37:12,286 INFO websocket User connected to room: general
+2026-03-11 14:37:41,165 INFO websocket Message received: hii
+2026-03-11 14:48:24,189 INFO websocket User connected to room: general
+2026-03-11 14:48:50,603 INFO websocket Message received: hii
+2026-03-11 15:05:19,306 INFO websocket User connected to room: general
+2026-03-11 15:06:35,099 INFO websocket User connected to room: general
+2026-03-11 15:07:10,809 INFO websocket Message received: hello everyone
+2026-03-11 15:07:45,105 INFO websocket User connected to room: general
+2026-03-11 15:08:13,903 INFO websocket User disconnected from room: general
+2026-03-11 15:08:16,803 INFO websocket User disconnected from room: general
+2026-03-11 15:11:26,593 INFO websocket User connected to room: general
+2026-03-11 15:46:58,687 INFO websocket User connected to room: general
+2026-03-11 15:46:58,895 INFO websocket User joined channel general
+2026-03-11 15:47:51,194 INFO websocket Message received: heyyy
+2026-03-11 15:48:52,310 INFO websocket User connected to room: general
+2026-03-11 15:48:52,364 INFO websocket User joined channel general
+2026-03-11 15:49:13,931 INFO websocket Message received: Test broadcast
+2026-03-11 15:54:57,328 INFO websocket Message received: Test this bro
+2026-03-11 15:59:36,490 INFO websocket User connected to room: general
+2026-03-11 15:59:36,540 INFO websocket User joined channel general
+2026-03-11 16:00:02,557 INFO websocket User connected to room: general
+2026-03-11 16:00:02,607 INFO websocket User joined channel general
+2026-03-11 16:00:06,597 INFO websocket Message received: hello
+2026-03-11 16:02:14,282 INFO websocket User connected to room: general
+2026-03-11 16:02:14,455 INFO websocket User joined channel general
+2026-03-11 16:02:20,495 INFO websocket User connected to room: general
+2026-03-11 16:02:20,668 INFO websocket User joined channel general
+2026-03-11 16:02:45,617 INFO websocket Message received: hello
+2026-03-11 16:04:37,302 INFO websocket User left channel general
+2026-03-11 16:04:37,302 INFO websocket User disconnected from room: general
+2026-03-11 16:05:27,520 INFO websocket User left channel general
+2026-03-11 16:05:27,520 INFO websocket User disconnected from room: general
