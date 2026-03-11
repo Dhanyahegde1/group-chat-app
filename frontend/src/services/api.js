@@ -8,3 +8,4 @@ export const registerUser = (data) => API.post("/users/register/", data);
 export const loginUser = (data) => API.post("/users/login/", data);
 export const getChannels = () => API.get("/channels");
 export const createChannel = (data) => API.post("/channels/create", data);
+export const uploadFile = (formData) => API.post("/files/upload/", formData);

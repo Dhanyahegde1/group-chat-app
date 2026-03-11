@@ -45,4 +45,5 @@ urlpatterns = [
     # /messages/send
     # /messages/history
     path('messages/', include('messaging.msgroute')),
+    path('files/', include('files.file_url')),
 ]

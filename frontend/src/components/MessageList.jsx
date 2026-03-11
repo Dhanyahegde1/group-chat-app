@@ -5,9 +5,9 @@ function MessageList() {
  const currentUser = localStorage.getItem("username");
 
   const messages = [
-    { user: "Dhanya", text: "Hello everyone" },
+    { user: "tom", text: "Hello everyone" },
     { user: "Rahul", text: "Hi!" },
-    { user: "Dhanya", text: "How are you?" }
+    { user: "tom", text: "How are you?" }
   ];
 
   return (

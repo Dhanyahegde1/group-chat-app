@@ -22,8 +22,7 @@ CORS_ALLOWED_ORIGINS = [
 # ---------------------------------------------------
 INSTALLED_APPS = [
      # Project applications
-    'daphne',
-    'channel',
+  
     'users',
     'channels_app',
     'messaging',
@@ -45,6 +44,13 @@ INSTALLED_APPS = [
    
 ]
 
+# Where uploaded files are stored
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'uploads'
+
+# Max upload size — 100MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600
+FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600
 
 # ---------------------------------------------------
 # MIDDLEWARE
