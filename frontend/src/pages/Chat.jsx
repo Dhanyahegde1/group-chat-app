@@ -1,18 +1,33 @@
+import React from "react";
 import ChannelList from "../components/ChannelList";
 import MessageList from "../components/MessageList";
 import MessageInput from "../components/MessageInput";
+import "../styles/styles.css";
 
 function Chat() {
   return (
-    <div>
+    <div className="chat-container">
 
-      <h2>Group Chat</h2>
+      <div className="sidebar">
+        <ChannelList />
+      </div>
 
-      <ChannelList />
+      <div className="chat-main">
 
-      <MessageList />
+        <div className="chat-header">
+          <h2>ChatRoom Dashboard</h2>
+           <button className="invite-btn">
+    Invite
+  </button>
+        </div>
 
-      <MessageInput />
+        <MessageList />
+        <div className="typing-indicator">
+  Rahul is typing...
+</div>
+        <MessageInput />
+
+      </div>
 
     </div>
   );

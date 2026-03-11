@@ -13,12 +13,23 @@ DEBUG = True
 
 # Allowed hosts (empty for local development)
 ALLOWED_HOSTS = []
-
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 # ---------------------------------------------------
 # INSTALLED APPLICATIONS
 # ---------------------------------------------------
 INSTALLED_APPS = [
+     # Project applications
+    'daphne',
+    'channel',
+    'users',
+    'channels_app',
+    'messaging',
+    'files',
+    'corsheaders',
+    'notification',
 
     # Default Django apps
     'django.contrib.admin',
@@ -31,12 +42,7 @@ INSTALLED_APPS = [
     # Django REST Framework (for building APIs)
     'rest_framework',
 
-    # Project applications
-    'users',
-    'channels_app',
-    'messaging',
-    'files',
-    'notification',
+   
 ]
 
 
@@ -45,6 +51,7 @@ INSTALLED_APPS = [
 # Middleware processes request/response lifecycle
 # ---------------------------------------------------
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

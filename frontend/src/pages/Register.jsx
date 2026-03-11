@@ -21,15 +21,16 @@ function Register() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      await registerUser(form);
-      alert("User registered successfully");
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  e.preventDefault();
+  try {
+    await registerUser(form);
+    alert("Registered successfully! Please log in.");
+    navigate("/");
+  } catch (error) {
+    alert("Registration failed. Username may be taken or password too weak.");
+    console.error(error);
+  }
+};
 
   return (
     <div className="auth-card">

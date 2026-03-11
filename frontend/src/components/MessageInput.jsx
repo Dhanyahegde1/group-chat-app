@@ -1,21 +1,22 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 function MessageInput() {
 
   const [message, setMessage] = useState("");
 
   const sendMessage = () => {
-    console.log(message);
+    console.log("Message:", message);
     setMessage("");
   };
 
   return (
-    <div>
+    <div className="message-input">
 
       <input
+        type="text"
+        placeholder="Type your message..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder="Type message"
       />
 
       <button onClick={sendMessage}>

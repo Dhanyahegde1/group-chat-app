@@ -18,25 +18,18 @@ function Login() {
     });
   };
 
-  const handleSubmit = async (e) => {
-
-    e.preventDefault();
-
-    try {
-
-      const res = await loginUser(form);
-
-      localStorage.setItem("token", res.data.token);
-
-      alert("Login successful");
-
-    } catch (error) {
-
-      console.error(error);
-
-    }
-
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await loginUser(form);
+    localStorage.setItem("username", res.data.username);
+    alert("Login successful! Welcome " + res.data.username);
+    navigate("/chat");
+  } catch (error) {
+    alert("Invalid username or password");
+    console.error(error);
+  }
+};
 
   return (
     <div className="auth-card">

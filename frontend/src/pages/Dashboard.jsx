@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getChannels } from "../services/api";
+import "../styles/dashboard.css";
 
 function Dashboard() {
 
