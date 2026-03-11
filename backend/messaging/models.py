@@ -1,4 +1,3 @@
-#id="jv9t1x"
 from django.db import models
 from users.models import User
 from channels_app.models import Channel
