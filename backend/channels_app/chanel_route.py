@@ -1,3 +1,12 @@
+# ---------------------------------------------------
+# Channel API Routes
+# ---------------------------------------------------
+# This file defines REST APIs for channel management
+# including creating channels, listing channels,
+# and joining channels.
+# ---------------------------------------------------
+
+
 # Import API decorator for creating REST endpoints
 from rest_framework.decorators import api_view
 
@@ -10,12 +19,16 @@ from rest_framework import status
 # Import Channel and ChannelMember models
 from .chanels import Channel, ChannelMember
 
+# Import logging aspect decorator
+from .aspect import log_api_call
+
 
 # ---------------------------------------------------
 # Create Channel API
 # Endpoint: POST /channels/create
 # ---------------------------------------------------
 @api_view(['POST'])
+@log_api_call   # Aspect decorator to log API calls
 def create_channel(request):
 
     # Get channel name and creator ID from request
@@ -44,12 +57,13 @@ def create_channel(request):
 
 # ---------------------------------------------------
 # List Channels API
-# Endpoint: GET /channels/list
+# Endpoint: GET /channels
 # ---------------------------------------------------
 @api_view(['GET'])
+@log_api_call   # Aspect decorator to log API calls
 def list_channels(request):
 
-    # Fetch all channels
+    # Fetch all channels from database
     channels = Channel.objects.all()
 
     data = []
@@ -71,9 +85,10 @@ def list_channels(request):
 # Endpoint: POST /channels/join
 # ---------------------------------------------------
 @api_view(['POST'])
+@log_api_call   # Aspect decorator to log API calls
 def join_channel(request):
 
-    # Get user and channel from request
+    # Get user ID and channel ID from request
     user_id = request.data.get("user")
     channel_id = request.data.get("channel")
 
@@ -88,7 +103,7 @@ def join_channel(request):
     if ChannelMember.objects.filter(user_id=user_id, channel_id=channel_id).exists():
         return Response({"message": "User already in channel"})
 
-    # Create membership entry
+    # Create membership entry in ChannelMember table
     ChannelMember.objects.create(
         user_id=user_id,
         channel_id=channel_id

@@ -1,4 +1,3 @@
-id="jv9t1x"
 # Import Django model utilities
 from django.db import models
 
@@ -25,7 +24,7 @@ class Message(models.Model):
     content = models.TextField()
 
     # Timestamp when the message was created
-    created_at = models.DateTimeField(auto_now_add=True)
+    time_stamp = models.DateTimeField(auto_now_add=True)
 
     # String representation of message object
     def __str__(self):
