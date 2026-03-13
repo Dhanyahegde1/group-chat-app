@@ -6,7 +6,7 @@ from .chanel_route import create_channel, list_channels, join_channel
 
 
 # ---------------------------------------------------
-# Channel API Routes
+# Channel API Routes are the endpoints foor handeling
 # ---------------------------------------------------
 # These endpoints handle channel creation,
 # listing available channels, and joining channels

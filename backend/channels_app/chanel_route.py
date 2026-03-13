@@ -1,11 +1,4 @@
-# ---------------------------------------------------
-# Channel API Routes
-# ---------------------------------------------------
-# This file defines REST APIs for channel management
-# including creating channels, listing channels,
-# and joining channels.
-# ---------------------------------------------------
-
+# Channel API Routes for defining REST APIs, including the creation of channels and joining channels
 
 # Import API decorator for creating REST endpoints
 from rest_framework.decorators import api_view
@@ -23,10 +16,7 @@ from .chanels import Channel, ChannelMember
 from .aspect import log_api_call
 
 
-# ---------------------------------------------------
-# Create Channel API
-# Endpoint: POST /channels/create
-# ---------------------------------------------------
+# Create Channel API with Endpoint for post -> channels -> create
 @api_view(['POST'])
 @log_api_call   # Aspect decorator to log API calls
 def create_channel(request):
@@ -55,10 +45,7 @@ def create_channel(request):
     })
 
 
-# ---------------------------------------------------
-# List Channels API
-# Endpoint: GET /channels
-# ---------------------------------------------------
+# List Channels API with Endpoint for get -> channels
 @api_view(['GET'])
 @log_api_call   # Aspect decorator to log API calls
 def list_channels(request):
@@ -80,10 +67,7 @@ def list_channels(request):
     return Response(data)
 
 
-# ---------------------------------------------------
-# Join Channel API
-# Endpoint: POST /channels/join
-# ---------------------------------------------------
+# Join Channel API with Endpoint for post -> channels -> join
 @api_view(['POST'])
 @log_api_call   # Aspect decorator to log API calls
 def join_channel(request):
