@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Chat from "./pages/Chat";
 import axios from "axios";
+import JoinPage from "./pages/JoinPage";
 
 const API = axios.create({
   baseURL: "http://127.0.0.1:8000/api"
@@ -39,6 +40,7 @@ function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/join/:code" element={<JoinPage />} />
 
       </Routes>
     </Router>

@@ -23,6 +23,7 @@ function Login() {
   try {
     const res = await loginUser(form);
     localStorage.setItem("username", res.data.username);
+     localStorage.setItem("userId", res.data.id);
     alert("Login successful! Welcome " + res.data.username);
     navigate("/chat");
   } catch (error) {

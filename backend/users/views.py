@@ -57,7 +57,8 @@ def login(request):
     if user:
         return Response({
             "message": "Login successful",
-            "username": user.username
+            "username": user.username,
+            "id": user.id
         })
 
     # If credentials are invalid

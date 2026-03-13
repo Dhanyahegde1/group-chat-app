@@ -3,11 +3,8 @@ from django.db import models
 
 # Import the custom User model
 from users.models import User
+import uuid
 
-
-# ---------------------------------------------------
-# Channel Model
-# ---------------------------------------------------
 # Represents a chat channel/group where users can communicate
 class Channel(models.Model):
 
@@ -49,3 +46,27 @@ class ChannelMember(models.Model):
     # String representation for admin/debugging
     def __str__(self):
         return f"{self.user} -> {self.channel}"
+    
+    
+class ChannelInvite(models.Model):
+
+    # Which channel the invite is for
+    channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
+
+    # Unique invite code
+    code = models.UUIDField(default=uuid.uuid4, unique=True)
+
+    # Who was invited (null until someone uses the link)
+    invited_user = models.ForeignKey(
+        User, null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='invites'
+    )
+
+    # Status of invite
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('accepted', 'Accepted'),
+        ('declined', 'Declined'),
+    ]
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')

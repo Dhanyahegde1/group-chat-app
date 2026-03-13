@@ -4,33 +4,32 @@ from pathlib import Path
 # Base directory of the Django project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = "test-secret-key"
 
-# SECURITY KEY (used by Django for cryptographic signing)
-SECRET_KEY = 'dev-secret-key'
-
-# Debug mode (True for development, should be False in production)
 DEBUG = True
 
-# Allowed hosts (empty for local development)
 ALLOWED_HOSTS = []
+# adding cors to connect with frontend
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
+ASGI_APPLICATION = "chat_project.asgi.application"
+#adding django channels to installed apps
 
-# ---------------------------------------------------
-# INSTALLED APPLICATIONS
-# ---------------------------------------------------
 INSTALLED_APPS = [
-     # Project applications
-  
-    'users',
-    'channels_app',
-    'messaging',
+     
+    # Project applications
+    "daphne",
+    "channels",
+    "users",
+    "channels_app",
+    "messaging",
     'files',
     'corsheaders',
     'notification',
+   # 'notification'
 
-    # Default Django apps
+     # Default Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +39,6 @@ INSTALLED_APPS = [
 
     # Django REST Framework (for building APIs)
     'rest_framework',
-
    
 ]
 
@@ -52,10 +50,8 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600
 FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600
 
-# ---------------------------------------------------
 # MIDDLEWARE
 # Middleware processes request/response lifecycle
-# ---------------------------------------------------
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -72,15 +68,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
+#Root URL configuration
+ROOT_URLCONF = "chat_project.urls"
 
-# Root URL configuration
-ROOT_URLCONF = 'chat_project.urls'
-
-
-# ---------------------------------------------------
-# TEMPLATES CONFIGURATION
-# Used for rendering HTML templates
-# ---------------------------------------------------
+#template configuration
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -110,10 +101,7 @@ TEMPLATES = [
     },
 ]
 
-
-# ---------------------------------------------------
-# DATABASE CONFIGURATION (PostgreSQL)
-# ---------------------------------------------------
+#database configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',   # PostgreSQL database engine
@@ -129,30 +117,16 @@ DATABASES = {
         'PORT': '5432',                               # Default PostgreSQL port
     }
 }
-
-
-# ---------------------------------------------------
-# STATIC FILES
-# Used for CSS / JS / Images
-# ---------------------------------------------------
+#static files 
 STATIC_URL = 'static/'
-
 
 # Default primary key type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-# ---------------------------------------------------
-# CUSTOM USER MODEL
-# ---------------------------------------------------
 # Tells Django to use our custom user model
 AUTH_USER_MODEL = 'users.User'
 
-
-# ---------------------------------------------------
-# PASSWORD VALIDATION
-# Ensures strong password policies
-# ---------------------------------------------------
+#password validation
 AUTH_PASSWORD_VALIDATORS = [
 
     # Prevent passwords similar to username
@@ -175,3 +149,75 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+#defining ASGI as django uses WSGI
+ASGI_APPLICATION = "chat_project.asgi.application"
+
+#configuring redis as message broker
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+
+#logging configuration 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+
+    #formatters
+    "formatters": {
+        "verbose": {
+            "format": "{asctime} {levelname} {name} {message}",
+            "style": "{",
+        },
+    },
+
+    #defining handlers
+    "handlers": {
+        #for connection events
+        "websocket_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "logs/websocket.log",
+            "formatter": "verbose",
+        },
+        #for message flow
+        "message_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "logs/messages.log",
+            "formatter": "verbose",
+        },
+        #for failures
+        "error_file": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "filename": "logs/errors.log",
+            "formatter": "verbose",
+        },
+    },
+
+    "loggers": {
+        "websocket": {
+            "handlers": ["websocket_file"],
+            "level": "INFO",
+            "propagate": True,
+        },
+
+        "messaging": {
+            "handlers": ["message_file"],
+            "level": "INFO",
+            "propagate": True,
+        },
+
+        "django": {
+            "handlers": ["error_file"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+    },
+}

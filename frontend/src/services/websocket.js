@@ -1,0 +1,66 @@
+let socket = null;
+
+export const connectToRoom = (roomName, username,onMessage, onTyping, onHistory, onRead, onOnline, onOffline) => {
+
+    socket = new WebSocket(`ws://127.0.0.1:8000/ws/chat/${roomName}/`);
+
+     socket.onopen = () => {
+        console.log("Connected to room:", roomName);
+        // Send username immediately after connecting
+        socket.send(JSON.stringify({
+            type: "join",
+            username: username
+        }));
+    };
+
+    socket.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+
+        if (data.type === "chat_history") {
+            onHistory(data.messages);
+        } else if (data.type === "chat_message") {
+            onMessage(data);
+        } else if (data.type === "typing") {
+            onTyping(data.username);
+        } else if (data.type === "messages_read") {
+            onRead();
+        } else if (data.type === "user_online") {
+            onOnline(data.username);
+        } else if (data.type === "user_offline") {
+            onOffline(data.username);
+        }
+    };
+
+    socket.onclose = () => {
+        console.log("Disconnected from room:", roomName);
+    };
+
+    socket.onerror = (error) => {
+        console.error("WebSocket error:", error);
+    };
+};
+
+export const sendMessage = (message, username) => {
+    if (socket) {
+        socket.send(JSON.stringify({
+            type: "chat_message",
+            message: message,
+            username: username
+        }));
+    }
+};
+
+export const sendTyping = (username) => {
+    if (socket) {
+        socket.send(JSON.stringify({
+            type: "typing",
+            username: username
+        }));
+    }
+};
+
+export const disconnectRoom = () => {
+    if (socket) {
+        socket.close();
+    }
+};

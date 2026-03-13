@@ -1,20 +1,9 @@
-# Import API decorator for creating REST endpoints
 from rest_framework.decorators import api_view
-
-# Import Response class for sending API responses
 from rest_framework.response import Response
-
-# Import HTTP status codes
 from rest_framework import status
-
-# Import Channel and ChannelMember models
 from .chanels import Channel, ChannelMember
 
-
-# ---------------------------------------------------
-# Create Channel API
-# Endpoint: POST /channels/create
-# ---------------------------------------------------
+# Create Channel API 
 @api_view(['POST'])
 def create_channel(request):
 
@@ -41,11 +30,7 @@ def create_channel(request):
         "channel": channel.name
     })
 
-
-# ---------------------------------------------------
-# List Channels API
-# Endpoint: GET /channels/list
-# ---------------------------------------------------
+# List Channels API 
 @api_view(['GET'])
 def list_channels(request):
 
@@ -66,10 +51,8 @@ def list_channels(request):
     return Response(data)
 
 
-# ---------------------------------------------------
-# Join Channel API
-# Endpoint: POST /channels/join
-# ---------------------------------------------------
+
+# Join Channel API 
 @api_view(['POST'])
 def join_channel(request):
 
