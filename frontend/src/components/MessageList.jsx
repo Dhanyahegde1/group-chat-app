@@ -60,10 +60,29 @@ function MessageList({ activeChannel }) {
 
     );
     
+    
     return () => disconnectRoom();
 
   }, [activeChannel, currentUser, roomName]);
 
+  const renderMessage = (text) => {
+  if (!text) return text;
+  const fileLinkRegex = /📎 \[(.+?)\]\((https?:\/\/.+?)\)/;
+  const match = text.match(fileLinkRegex);
+  if (match) {
+    const [, filename, url] = match;
+    const isImage = /\.(jpg|jpeg|png|gif)$/i.test(filename);
+    if (isImage) {
+      return (
+        <a href={url} target="_blank" rel="noreferrer">
+          <img src={url} alt={filename} style={{ maxWidth: "200px", borderRadius: "8px" }} />
+        </a>
+      );
+    }
+    return <a href={url} target="_blank" rel="noreferrer">📎 {filename}</a>;
+  }
+  return text;
+};
   return (
     <div className="message-list">
 
@@ -83,7 +102,7 @@ function MessageList({ activeChannel }) {
           className={msg.user === currentUser ? "message my-message" : "message other-message"}
         >
           <span className="msg-user">{msg.user}</span>
-          <p>{msg.text}</p>
+          <p>{renderMessage(msg.text)}</p>
           <div className="msg-meta">
             <span className="msg-time">{msg.timestamp}</span>
             {msg.user === currentUser && (

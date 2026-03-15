@@ -1,18 +1,9 @@
-# Import API decorator for creating REST endpoints
 from rest_framework.decorators import api_view
-
-# Import Response class for sending API responses
 from rest_framework.response import Response
-
-# Import HTTP status codes
 from rest_framework import status
-
-# Import serializer for user registration
 from .serializers import RegisterSerializer
-
-# Import Django authentication system
 from django.contrib.auth import authenticate
-
+from users.models import User
 
 # ---------------------------------------------------
 # User Registration API
@@ -63,3 +54,8 @@ def login(request):
 
     # If credentials are invalid
     return Response({"error": "Invalid credentials"}, status=400)
+
+@api_view(['GET'])
+def list_users(request):
+    users = User.objects.all().values("id", "username")
+    return Response(list(users))

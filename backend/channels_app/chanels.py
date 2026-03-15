@@ -18,6 +18,8 @@ class Channel(models.Model):
     # Timestamp when the channel was created
     created_at = models.DateTimeField(auto_now_add=True)
 
+    is_private = models.BooleanField(default=False)
+
     # String representation (shown in Django admin / querysets)
     def __str__(self):
         return self.name

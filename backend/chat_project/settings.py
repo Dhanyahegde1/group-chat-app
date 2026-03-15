@@ -8,11 +8,17 @@ SECRET_KEY = "test-secret-key"
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
 # adding cors to connect with frontend
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
+#CORS_ALLOWED_ORIGINS = [
+   # "http://localhost:3000",
+   # "http://localhost:3001",
+  #  "http://localhost:3002",
+#]
 ASGI_APPLICATION = "chat_project.asgi.application"
 #adding django channels to installed apps
 

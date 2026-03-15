@@ -40,9 +40,19 @@ class UploadedFile(models.Model):
     # Who uploaded it
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    # Which channel it was sent in
-    channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
-
+    channel = models.ForeignKey(
+        Channel,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+    receiver = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="received_files"
+    )
     # When it was uploaded
     uploaded_at = models.DateTimeField(auto_now_add=True)
 

@@ -1,102 +1,143 @@
+import React, { useState, useEffect } from "react";
 import ChannelList from "../components/ChannelList";
 import MessageList from "../components/MessageList";
 import MessageInput from "../components/MessageInput";
-import "../styles/styles.css";
+import DMWindow from "../components/DMWindow";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import "../styles/styles.css";
 
 function Chat() {
-  const [inviteLink, setInviteLink] = useState("");
-  const [showInvite, setShowInvite] = useState(false);
-  const [activeChannel, setActiveChannel] = useState("General");
-  const [pendingInvite, setPendingInvite] = useState(null);
+  const [activeChannel, setActiveChannel] = useState(null);
+  const [activeDM,      setActiveDM]      = useState(null); // other user's username
+  const [inviteLink,    setInviteLink]     = useState("");
+  const [showInvite,    setShowInvite]     = useState(false);
+  const [pendingInvite, setPendingInvite]  = useState(null);
+  const [activeChannelId, setActiveChannelId] = useState(null);
 
   const handleInvite = async () => {
-    try {
-      const res = await axios.post("http://127.0.0.1:8000/channels/invite/generate/", {
-        channel_id: 1
-      });
-      setInviteLink(res.data.invite_link);
-      setShowInvite(true);
-    } catch (error) {
-      alert("Failed to generate invite link");
-    }
-  };
+  try {
+    const res = await axios.post("http://127.0.0.1:8000/channels/invite/generate/", {
+      channel_id: activeChannelId   // ← use actual channel id
+    });
+    setInviteLink(res.data.invite_link);
+    setShowInvite(true);
+  } catch {
+    alert("Failed to generate invite link");
+  }
+};
 
-  useEffect(() => {
-    const interval = setInterval(async () => {
-      try {
-        const res = await axios.get("http://127.0.0.1:8000/channels/invite/pending/1/");
-        if (res.data.code) {
-          setPendingInvite(res.data);
-        }
-      } catch (error) {
-        console.error(error);
+useEffect(() => {
+  const interval = setInterval(async () => {
+    if (!activeChannelId) return;
+    try {
+      const res = await axios.get(`http://127.0.0.1:8000/channels/invite/pending/${activeChannelId}/`);
+      if (res.data.code) {
+        setPendingInvite(res.data);
       }
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+    } catch (error) {
+      console.error(error);
+    }
+  }, 3000);
+  return () => clearInterval(interval);
+}, [activeChannelId]);
 
   const handleRespond = async (action) => {
     try {
       await axios.post("http://127.0.0.1:8000/channels/invite/respond/", {
         code: pendingInvite.code,
-        action: action
+        action
       });
       setPendingInvite(null);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
     }
   };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(inviteLink);
-    alert("Invite link copied!");
-  };
+  // When user picks a channel, clear DM and vice versa
+ const handleChannelSelect = (channelName, channelId) => {
+  setActiveChannel(channelName);
+  setActiveChannelId(channelId);
+  setActiveDM(null);
+};
+
+  const handleDMSelect = (otherUsername, otherUserId) => {
+  setActiveDM({
+    username: otherUsername,
+    id: otherUserId
+  });
+
+  setActiveChannel(null);
+  setActiveChannelId(null);
+};
 
   return (
     <div className="chat-container">
 
-      {/* LEFT PANEL */}
+      {/* LEFT SIDEBAR */}
       <div className="sidebar">
         <ChannelList
           activeChannel={activeChannel}
-          onChannelSelect={setActiveChannel}
+          onChannelSelect={handleChannelSelect}
+          onDMSelect={handleDMSelect}
         />
       </div>
 
-      {/* RIGHT PANEL */}
+      {/* MAIN AREA */}
       <div className="chat-main">
 
-        <div className="chat-header">
-          <h2>Chatroom  {activeChannel}</h2>
-          <button className="invite-btn" onClick={handleInvite}>
-            Invite
-          </button>
-        </div>
+        {/* ── Channel chat ── */}
+        {activeChannel && (
+          <>
+            <div className="chat-header">
+              <h2># {activeChannel}</h2>
+              <button className="invite-btn" onClick={handleInvite}>Invite</button>
+            </div>
 
-        {showInvite && (
-          <div className="invite-popup">
-            <p>Share this link:</p>
-            <input readOnly value={inviteLink} />
-            <button onClick={handleCopy}>Copy</button>
-            <button onClick={() => setShowInvite(false)}>Close</button>
-          </div>
+            {showInvite && (
+              <div className="invite-popup">
+                <p>Share this link:</p>
+                <input readOnly value={inviteLink} />
+                <button onClick={() => { navigator.clipboard.writeText(inviteLink); alert("Copied!"); }}>Copy</button>
+                <button onClick={() => setShowInvite(false)}>Close</button>
+              </div>
+            )}
+
+            {pendingInvite && (
+              <div className="invite-popup">
+                <p>{pendingInvite.username} wants to join!</p>
+                <button onClick={() => handleRespond("accept")}>✅ Allow</button>
+                <button onClick={() => handleRespond("decline")}>❌ Decline</button>
+              </div>
+            )}
+
+            
+           <MessageList activeChannel={activeChannel} />
+                <MessageInput activeChannel={activeChannel} channelId={activeChannelId} />
+             
+          </>
         )}
 
-        {pendingInvite && (
-          <div className="invite-popup">
-            <p>{pendingInvite.username} wants to join!</p>
-            <button onClick={() => handleRespond("accept")}>✅ Allow</button>
-            <button onClick={() => handleRespond("decline")}>❌ Decline</button>
-          </div>
+        {/* ── Direct message ── */}
+        {activeDM && (
+          <>
+            <div className="chat-header">
+              <h2>💬 {activeDM.username}</h2>
+            </div>
+            <DMWindow 
+              otherUsername={activeDM.username}
+              otherUserId={activeDM.id}/>
+
+          </>
         )}
 
-        <MessageList activeChannel={activeChannel} />
-        <MessageInput activeChannel={activeChannel} />
+        {/* ── Nothing selected ── */}
+        {!activeChannel && !activeDM && (
+          <div style={{ padding: "40px", color: "#888" }}>
+            Select a channel or user to start chatting.
+          </div>
+        )}
 
       </div>
-
     </div>
   );
 }
