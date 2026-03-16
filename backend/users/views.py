@@ -1,23 +1,13 @@
-# Import API decorator for creating REST endpoints
 from rest_framework.decorators import api_view
-
-# Import Response class for sending API responses
 from rest_framework.response import Response
-
-# Import HTTP status codes
 from rest_framework import status
-
-# Import serializer for user registration
 from .serializers import RegisterSerializer
-
-# Import Django authentication system
 from django.contrib.auth import authenticate
 from channels_app.chanels import Channel, ChannelMember
+from users.models import User
 
-# ---------------------------------------------------
 # User Registration API
 # Endpoint: POST /users/register
-# ---------------------------------------------------
 @api_view(['POST'])
 def register(request):
 
@@ -37,11 +27,8 @@ def register(request):
         return Response({"message": "User registered successfully"}, status=201)
     return Response(serializer.errors, status=400)
 
-
-# ---------------------------------------------------
 # User Login API
 # Endpoint: POST /users/login
-# ---------------------------------------------------
 @api_view(['POST'])
 def login(request):
 
@@ -62,3 +49,8 @@ def login(request):
 
     # If credentials are invalid
     return Response({"error": "Invalid credentials"}, status=400)
+
+@api_view(['GET'])
+def list_users(request):
+    users = User.objects.all().values("id", "username")
+    return Response(list(users))

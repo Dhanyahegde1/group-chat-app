@@ -1,16 +1,7 @@
-# Import API decorator for creating REST endpoints
 from rest_framework.decorators import api_view
-
-# Import Response class for sending API responses
 from rest_framework.response import Response
-
-# Import HTTP status codes
 from rest_framework import status
-
-# Import Message model
 from .models import Message
-
-# Import Channel and User models
 from channels_app.chanels import Channel
 from users.models import User
 
@@ -70,3 +61,29 @@ def get_messages(request, channel_id):
 
     return Response(data)
 
+@api_view(['GET'])
+def get_dm_history_api(request, my_username, other_username):
+    from messaging.models import DirectMessage
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    try:
+        me    = User.objects.get(username=my_username)
+        other = User.objects.get(username=other_username)
+    except User.DoesNotExist:
+        return Response({"error": "User not found"}, status=404)
+
+    messages = (
+        DirectMessage.objects.filter(sender=me, recipient=other) |
+        DirectMessage.objects.filter(sender=other, recipient=me)
+    ).order_by("timestamp")
+
+    data = [
+        {
+            "sender":    m.sender.username,
+            "message":   m.content,
+            "timestamp": m.timestamp.strftime("%H:%M"),
+            "is_read":   m.is_read,
+        }
+        for m in messages
+    ]
+    return Response(data)

@@ -430,6 +430,7 @@
 2026-03-13 11:01:51,349 INFO websocket User left channel General
 2026-03-13 11:01:51,353 INFO websocket User disconnected from room: General
 2026-03-13 11:01:51,417 INFO websocket User joined channel class1
+
 2026-03-13 11:40:17,480 INFO websocket User connected to room: General
 2026-03-13 11:40:17,482 INFO websocket User connected to room: General
 2026-03-13 11:40:17,770 INFO websocket User joined channel General
@@ -491,3 +492,127 @@
 2026-03-13 12:32:50,940 INFO websocket User joined channel General
 2026-03-13 12:55:39,121 INFO websocket User left channel General
 2026-03-13 12:55:39,121 INFO websocket User disconnected from room: General
+
+2026-03-13 11:58:05,936 INFO websocket User connected to room: General
+2026-03-13 11:58:05,939 INFO websocket User connected to room: General
+2026-03-13 11:58:06,206 ERROR websocket Channel not found: General
+2026-03-13 11:58:06,256 ERROR websocket Channel not found: General
+2026-03-13 11:58:06,305 ERROR websocket Channel not found: General
+2026-03-13 11:58:06,355 ERROR websocket Channel not found: General
+2026-03-13 11:58:06,422 ERROR websocket Channel not found: General
+2026-03-13 11:58:06,422 INFO websocket User disconnected from room: General
+2026-03-13 11:58:23,280 INFO websocket User connected to room: general
+2026-03-13 11:58:23,418 ERROR websocket Channel not found: General
+2026-03-13 11:58:23,418 INFO websocket User disconnected from room: General
+2026-03-13 11:58:23,469 INFO websocket User joined channel general
+2026-03-13 11:59:06,855 INFO websocket User left channel general
+2026-03-13 11:59:06,855 INFO websocket User disconnected from room: general
+2026-03-13 11:59:13,847 INFO websocket User connected to room: General
+2026-03-13 11:59:14,011 ERROR websocket Channel not found: General
+2026-03-13 11:59:14,074 ERROR websocket Channel not found: General
+2026-03-13 12:01:08,160 INFO websocket User connected to room: General
+2026-03-13 12:01:08,196 INFO websocket User connected to room: General
+2026-03-13 12:01:08,502 ERROR websocket Channel not found: General
+2026-03-13 12:01:08,675 ERROR websocket Channel not found: General
+2026-03-13 12:01:08,727 ERROR websocket Channel not found: General
+2026-03-13 12:01:08,887 ERROR websocket Channel not found: General
+2026-03-13 12:01:08,954 ERROR websocket Channel not found: General
+2026-03-13 12:01:08,955 INFO websocket User disconnected from room: General
+2026-03-13 12:01:16,500 INFO websocket User connected to room: general
+2026-03-13 12:01:16,607 ERROR websocket Channel not found: General
+2026-03-13 12:01:16,610 INFO websocket User disconnected from room: General
+2026-03-13 12:01:16,656 INFO websocket User joined channel general
+2026-03-13 12:01:32,084 INFO websocket User connected to room: 1245
+2026-03-13 12:01:32,195 INFO websocket User left channel general
+2026-03-13 12:01:32,195 INFO websocket User disconnected from room: general
+2026-03-13 12:01:32,245 INFO websocket User joined channel 1245
+2026-03-13 12:01:37,466 ERROR websocket Channel not found: General
+2026-03-13 12:01:37,477 INFO websocket User disconnected from room: General
+2026-03-13 12:01:37,478 INFO websocket User connected to room: General
+2026-03-13 12:01:37,484 INFO websocket User connected to room: General
+2026-03-13 12:01:37,644 ERROR websocket Channel not found: General
+2026-03-13 12:01:37,690 ERROR websocket Channel not found: General
+2026-03-13 12:01:37,738 ERROR websocket Channel not found: General
+2026-03-13 12:01:37,777 ERROR websocket Channel not found: General
+2026-03-13 12:01:37,830 ERROR websocket Channel not found: General
+2026-03-13 12:01:37,830 INFO websocket User disconnected from room: General
+2026-03-13 12:01:39,093 INFO websocket User connected to room: 1245
+2026-03-13 12:01:39,197 ERROR websocket Channel not found: General
+2026-03-13 12:01:39,197 INFO websocket User disconnected from room: General
+2026-03-13 12:01:39,245 INFO websocket User joined channel 1245
+2026-03-13 12:01:48,429 INFO websocket User left channel 1245
+2026-03-13 12:01:48,431 INFO websocket User disconnected from room: 1245
+2026-03-13 22:20:19,583 INFO websocket 'dhanya' connected to room 'team'
+2026-03-13 22:20:19,586 INFO websocket 'dhanya' disconnected from 'team'
+2026-03-13 22:20:19,663 INFO websocket 'dhanya' connected to room 'team'
+2026-03-13 22:21:54,860 INFO websocket 'dhanya' disconnected from 'team'
+2026-03-13 22:22:17,705 INFO websocket 'dhanya' connected to room 'general'
+2026-03-13 22:22:17,711 INFO websocket 'dhanya' disconnected from 'general'
+2026-03-13 22:22:17,803 INFO websocket 'dhanya' connected to room 'general'
+2026-03-13 22:22:30,448 INFO websocket 'dhanya' disconnected from 'general'
+2026-03-13 22:22:30,677 INFO websocket 'dhanya' connected to room '1245'
+2026-03-13 22:22:37,314 INFO websocket 'dhanya' disconnected from '1245'
+2026-03-13 22:22:37,634 INFO websocket 'dhanya' connected to room 'team'
+2026-03-13 22:22:38,382 INFO websocket 'dhanya' disconnected from 'team'
+2026-03-13 22:22:38,793 INFO websocket 'dhanya' connected to room '1245'
+2026-03-13 22:22:39,766 INFO websocket 'dhanya' disconnected from '1245'
+2026-03-13 22:22:40,164 INFO websocket 'dhanya' connected to room 'general'
+2026-03-13 22:22:40,522 INFO websocket 'dhanya' disconnected from 'general'
+2026-03-13 22:22:41,037 INFO websocket 'dhanya' connected to room 'team'
+2026-03-13 22:22:41,451 INFO websocket 'dhanya' disconnected from 'team'
+2026-03-13 22:22:41,807 INFO websocket 'dhanya' connected to room '1245'
+2026-03-13 22:22:45,091 INFO websocket 'dhanya' disconnected from '1245'
+2026-03-13 22:38:30,257 INFO websocket 'dhanya' connected to room 'general'
+2026-03-13 22:38:30,262 INFO websocket 'dhanya' disconnected from 'general'
+2026-03-13 22:38:30,349 INFO websocket 'dhanya' connected to room 'general'
+2026-03-13 22:38:31,015 INFO websocket 'dhanya' disconnected from 'general'
+2026-03-13 22:38:39,882 INFO websocket 'dhanya' connected to room 'general'
+2026-03-13 22:38:39,889 INFO websocket 'dhanya' disconnected from 'general'
+2026-03-13 22:38:40,163 INFO websocket 'dhanya' connected to room 'general'
+2026-03-13 22:38:40,486 INFO websocket 'dhanya' disconnected from 'general'
+2026-03-13 22:38:40,825 INFO websocket 'dhanya' connected to room '1245'
+2026-03-13 22:38:42,371 INFO websocket 'dhanya' disconnected from '1245'
+2026-03-13 22:38:42,953 INFO websocket 'dhanya' connected to room 'team'
+2026-03-13 22:38:44,033 INFO websocket 'dhanya' disconnected from 'team'
+2026-03-13 22:38:44,300 INFO websocket 'dhanya' connected to room 'general'
+2026-03-13 22:39:08,150 INFO websocket 'dhanya' disconnected from 'general'
+2026-03-13 22:39:24,956 INFO websocket 'dhanya' connected to room 'general'
+2026-03-13 22:39:24,961 INFO websocket 'dhanya' disconnected from 'general'
+2026-03-13 22:39:25,059 INFO websocket 'dhanya' connected to room 'general'
+2026-03-13 22:39:28,486 INFO websocket 'dhanya' disconnected from 'general'
+2026-03-13 22:39:28,769 INFO websocket 'dhanya' connected to room '1245'
+2026-03-13 22:39:38,935 INFO websocket 'dhanya' disconnected from '1245'
+2026-03-13 22:39:39,260 INFO websocket 'dhanya' connected to room 'team'
+2026-03-13 22:39:40,167 INFO websocket 'dhanya' disconnected from 'team'
+2026-03-13 22:39:40,506 INFO websocket 'dhanya' connected to room '1245'
+2026-03-13 22:39:41,776 INFO websocket 'dhanya' disconnected from '1245'
+2026-03-13 22:42:36,620 INFO websocket 'dhanya' connected to room 'general'
+2026-03-13 22:42:36,622 INFO websocket 'dhanya' disconnected from 'general'
+2026-03-13 22:42:36,700 INFO websocket 'dhanya' connected to room 'general'
+2026-03-14 15:46:22,301 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 15:46:22,358 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 15:46:22,366 INFO websocket 'harry' disconnected from 'team1'
+2026-03-14 15:47:03,594 INFO websocket 'harry' disconnected from 'team1'
+2026-03-14 15:47:04,744 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 15:47:08,587 INFO websocket 'harry' disconnected from 'team1'
+2026-03-14 15:47:09,688 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 15:47:12,868 INFO websocket 'harry' disconnected from 'team1'
+2026-03-14 15:47:24,741 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 15:47:24,792 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 15:47:24,799 INFO websocket 'harry' disconnected from 'team1'
+2026-03-14 15:47:31,000 INFO websocket 'harry' disconnected from 'team1'
+2026-03-14 15:48:08,005 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 15:48:08,065 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 15:48:08,073 INFO websocket 'harry' disconnected from 'team1'
+2026-03-14 15:49:02,059 INFO websocket 'harry' disconnected from 'team1'
+2026-03-14 15:54:26,735 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 16:24:27,348 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 16:24:27,394 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 16:24:27,400 INFO websocket 'harry' disconnected from 'team1'
+2026-03-14 16:52:43,956 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 16:52:44,004 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 16:52:44,009 INFO websocket 'harry' disconnected from 'team1'
+2026-03-14 16:53:19,306 INFO websocket 'harry' disconnected from 'team1'
+2026-03-14 16:53:20,423 INFO websocket 'harry' connected to room 'team1'
+2026-03-14 16:53:29,534 INFO websocket 'harry' disconnected from 'team1'
+

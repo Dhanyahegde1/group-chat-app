@@ -10,7 +10,11 @@ def generate_invite(request):
     try:
         channel = Channel.objects.get(id=channel_id)
         invite = ChannelInvite.objects.create(channel=channel)
-        invite_link = f"http://localhost:3000/join/{invite.code}"
+        
+        # Get the host IP from the request so it works on any network
+        host = request.get_host().split(':')[0]  # gets your machine's IP
+        invite_link = f"http://{host}:3001/join/{invite.code}"
+        
         return Response({"invite_link": invite_link})
     except Channel.DoesNotExist:
         return Response({"error": "Channel not found"}, status=404)

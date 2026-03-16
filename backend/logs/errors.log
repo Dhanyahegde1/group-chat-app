@@ -1,4 +1,5 @@
-2026-03-13 11:40:18,230 ERROR django.request Internal Server Error: /channels/
+
+ERROR django.request Internal Server Error: /channels/
 Traceback (most recent call last):
   File "E:\techspiration\p3\group_chat_app\backend\channels_app\chanel_route.py", line 38, in list_channels
     user = User.objects.get(username=username)

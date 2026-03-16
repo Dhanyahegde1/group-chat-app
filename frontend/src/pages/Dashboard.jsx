@@ -5,12 +5,13 @@ import "../styles/dashboard.css";
 function Dashboard() {
 
   const [channels, setChannels] = useState([]);
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
 
     const fetchChannels = async () => {
 
-      const res = await getChannels();
+      const res = await getMyChannels(userId);
 
       setChannels(res.data);
 

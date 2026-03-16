@@ -2,10 +2,10 @@ import { useState } from "react";
 import { sendMessage, sendTyping } from "../services/websocket";
 import { uploadFile } from "../services/api";
 
-function MessageInput() {
-
+function MessageInput({ activeChannel, channelId }) {
   const [message, setMessage] = useState("");
-  const [file, setFile] = useState(null);
+  const [file,    setFile]    = useState(null);
+  const [loading, setLoading] = useState(false);
   const username = localStorage.getItem("username");
 
   const handleSend = () => {
@@ -13,6 +13,10 @@ function MessageInput() {
       sendMessage(message, username);
       setMessage("");
     }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") handleSend();
   };
 
   const handleTyping = (e) => {
@@ -25,50 +29,65 @@ function MessageInput() {
   };
 
   const handleFileUpload = async () => {
-    if (!file) return;
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("username", username);
-    formData.append("channel_id", 1);
-    try {
-      await uploadFile(formData);
-      alert("File uploaded successfully!");
-      setFile(null);
-    } catch (error) {
-      alert("Upload failed.");
-    }
-  };
+  if (!file) return alert("No file selected.");
+  if (!channelId) return alert("No channel selected.");
+  console.log("Uploading to channel:", channelId);
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("username", username);
+  formData.append("channel_id", channelId);
 
+  try {
+    setLoading(true);
+
+    const res = await uploadFile(formData);
+
+    const fileUrl = `http://127.0.0.1:8000/media/${res.data.filename}`;
+    const fileMsg = `📎 [${res.data.filename}](${fileUrl})`;
+
+    sendMessage(fileMsg, username);
+
+    setFile(null);
+    document.getElementById("channelFileInput").value = "";
+  } catch (err) {
+    const msg = err.response?.data?.error || "Upload failed.";
+    alert(msg);
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <div className="message-input">
-
       <input
         type="text"
         placeholder="Type your message..."
         value={message}
         onChange={handleTyping}
+        onKeyDown={handleKeyDown}
       />
 
       <input
         type="file"
-        id="fileInput"
+        id="channelFileInput"
         style={{ display: "none" }}
         accept=".pdf,.doc,.docx,.jpg,.jpeg,.csv,.xls,.xlsx"
         onChange={handleFileChange}
       />
 
-      <button onClick={() => document.getElementById("fileInput").click()}>
+      <button onClick={() => document.getElementById("channelFileInput").click()}>
         📎
       </button>
 
       {file && (
-        <span>{file.name}
-          <button onClick={handleFileUpload}>Upload</button>
+        <span style={{ fontSize: "12px", color: "#aaa" }}>
+          {file.name}
+          <button onClick={handleFileUpload} disabled={loading}>
+            {loading ? "Uploading…" : "Upload"}
+          </button>
         </span>
       )}
 
       <button onClick={handleSend}>Send</button>
-
     </div>
   );
 }
