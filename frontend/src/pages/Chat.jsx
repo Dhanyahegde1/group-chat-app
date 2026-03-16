@@ -33,7 +33,7 @@ function Chat() {
       } catch (error) {
         console.error(error);
       }
-    }, 3000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 

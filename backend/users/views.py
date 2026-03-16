@@ -12,7 +12,7 @@ from .serializers import RegisterSerializer
 
 # Import Django authentication system
 from django.contrib.auth import authenticate
-
+from channels_app.chanels import Channel, ChannelMember
 
 # ---------------------------------------------------
 # User Registration API
@@ -28,15 +28,14 @@ def register(request):
     if serializer.is_valid():
 
         # Save user to database
-        serializer.save()
-
-        return Response(
-            {"message": "User registered successfully"},
-            status=status.HTTP_201_CREATED
-        )
-
-    # Return validation errors if input is invalid
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        user = serializer.save()
+        try:
+            general = Channel.objects.get(name="General")
+            ChannelMember.objects.get_or_create(user=user, channel=general)
+        except Channel.DoesNotExist:
+            pass
+        return Response({"message": "User registered successfully"}, status=201)
+    return Response(serializer.errors, status=400)
 
 
 # ---------------------------------------------------

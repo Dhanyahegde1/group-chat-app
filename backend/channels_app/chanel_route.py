@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .chanels import Channel, ChannelMember
-
+from users.models import User
 # Create Channel API 
 @api_view(['POST'])
 def create_channel(request):
@@ -33,24 +33,20 @@ def create_channel(request):
 # List Channels API 
 @api_view(['GET'])
 def list_channels(request):
-
-    # Fetch all channels
-    channels = Channel.objects.all()
-
-    data = []
-
-    # Convert queryset to JSON response format
-    for channel in channels:
-        data.append({
-            "id": channel.id,
-            "name": channel.name,
-            "created_by": channel.created_by.username,
-            "created_at": channel.created_at
-        })
-
-    return Response(data)
-
-
+    username = request.query_params.get('username')
+    try:
+        user = User.objects.get(username=username)
+        # Channels created by user
+        created = Channel.objects.filter(created_by=user)
+        # Channels user has joined
+        joined_ids = ChannelMember.objects.filter(user=user).values_list('channel_id', flat=True)
+        joined = Channel.objects.filter(id__in=joined_ids)
+        # Combine both
+        channels = (created | joined).distinct()
+        data = [{"id": c.id, "name": c.name} for c in channels]
+        return Response(data)
+    except User.DoesNotExist:
+        return Response([])
 
 # Join Channel API 
 @api_view(['POST'])

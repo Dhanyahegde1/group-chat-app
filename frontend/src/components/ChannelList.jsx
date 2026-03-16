@@ -14,6 +14,7 @@ function ChannelList({ activeChannel, onChannelSelect }) {
     const fetchChannels = async () => {
       try {
         const res = await axios.get("http://127.0.0.1:8000/channels/");
+        console.log("Channels fetched:", res.data);
         setChannels(res.data);
       } catch (error) {
         console.error("Failed to fetch channels", error);

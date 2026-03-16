@@ -10,6 +10,7 @@ function MessageList({ activeChannel }) {
   const [typingUser, setTypingUser] = useState("");
   const [allRead, setAllRead] = useState(false);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [offlineUsers, setOfflineUsers] = useState([]);
 
   useEffect(() => {
     setMessages([]);      // ← clear old messages
@@ -54,10 +55,10 @@ function MessageList({ activeChannel }) {
       },
 
       // onOffline
-      (username) => {
+       (username) => {
         setOnlineUsers((prev) => prev.filter((u) => u !== username));
-      }
-
+        setOfflineUsers((prev) => [...new Set([...prev, username])]);
+    }
     );
     
     return () => disconnectRoom();
@@ -67,14 +68,15 @@ function MessageList({ activeChannel }) {
   return (
     <div className="message-list">
 
-      {/* Online users */}
+      {/* Online users and offline users*/}
       <div className="online-bar">
-        {onlineUsers.map((u, i) => (
-          <span key={i} className="online-user">
-            🟢 {u}
-          </span>
-        ))}
-      </div>
+    {onlineUsers.map((u, i) => (
+        <span key={i} className="online-user">🟢 {u}</span>
+    ))}
+    {offlineUsers.map((u, i) => (
+        <span key={i} className="offline-user">🔴 {u}</span>
+    ))}
+</div>
 
      {/* Messages */}
       {messages.map((msg, i) => (
