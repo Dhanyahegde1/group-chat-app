@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getChannels } from "../services/api";
+import { getMyChannels } from "../services/api";
 import "../styles/dashboard.css";
 
 function Dashboard() {
@@ -19,7 +19,7 @@ function Dashboard() {
 
     fetchChannels();
 
-  }, []);
+  }, [userId]);
 
   return (
 

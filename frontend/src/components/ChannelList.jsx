@@ -9,10 +9,8 @@ function ChannelList({ activeChannel, onChannelSelect, onDMSelect }) {
   const [showCreate,   setShowCreate]   = useState(false);
   const [newName,      setNewName]      = useState("");
   const [isPrivate,    setIsPrivate]    = useState(false);
-
-  const username = localStorage.getItem("username");
   const userId   = localStorage.getItem("userId");
-
+  
   // Load only the user's joined channels
   useEffect(() => {
 

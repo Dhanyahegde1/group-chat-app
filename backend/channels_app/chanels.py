@@ -1,7 +1,4 @@
-# Import Django model utilities
 from django.db import models
-
-# Import the custom User model
 from users.models import User
 import uuid
 
