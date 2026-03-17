@@ -41,7 +41,8 @@ function MessageInput({ activeChannel, channelId }) {
     setLoading(true);
 
     const res = await uploadFile(formData);
-
+    console.log("filename from server:", res.data.filename);
+    console.log("full URL:", `http://127.0.0.1:8000/media/uploads/${res.data.filename}`); 
     const fileUrl = `http://127.0.0.1:8000/media/uploads/${res.data.filename}`;
     const fileMsg = `📎 [${res.data.filename}](${fileUrl})`;
     console.log("File message:", fileMsg);
