@@ -1,0 +1,276 @@
+/* PAGE BACKGROUND */
+
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: linear-gradient(
+        to bottom,
+        #000000,
+        #022f1f
+    );
+
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+/* GLASS CARD */
+
+.auth-card{
+    width:350px;
+    padding:40px;
+
+    background: rgba(255,255,255,0.05);
+
+    backdrop-filter: blur(12px);
+
+    border-radius:15px;
+
+    border:1px solid rgba(0,255,170,0.5);
+
+    box-shadow:
+        0 0 10px rgba(0,255,170,0.6),
+        0 0 25px rgba(0,255,170,0.4);
+}
+
+
+/* TITLE */
+
+.auth-card h2{
+    text-align:center;
+    color:rgb(255, 255, 255);
+    margin-bottom:30px;
+
+}
+
+
+/* INPUTS */
+
+.auth-card input{
+
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+
+    border-radius:8px;
+    border:none;
+
+    background:#0b1f18;
+
+    color:white;
+
+    outline:none;
+
+    border:1px solid rgba(0,255,170,0.4);
+}
+
+.auth-card input::placeholder{
+    color:#9aa;
+}
+
+
+/* BUTTON */
+
+.auth-card button{
+
+    width:100%;
+    padding:12px;
+
+    border-radius:25px;
+    border:none;
+
+    background:#98eac1;
+    color:black;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 0 10px #3e6e5f,
+        0 0 20px #3d7561;
+
+    transition:0.3s;
+}
+
+.auth-card button:hover{
+
+    box-shadow:
+        0 0 20px #417a67,
+        0 0 40px #519780;
+
+    transform:scale(1.05);
+}
+
+
+/* REGISTER LINK */
+
+.auth-link{
+
+    text-align:center;
+    margin-top:15px;
+}
+
+.auth-link a{
+
+    color:#00ffaa;
+    text-decoration:none;
+}
+
+/* title*/
+.app-title{
+    text-align:center;
+    color:#00ffaa;
+    font-size:26px;
+    font-weight:bold;
+    margin-bottom:10px;
+
+    text-shadow:
+        0 0 10px #00ffaa,
+        0 0 20px #00ffaa;
+}
+
+.app-subtitle{
+    text-align:center;
+    color:#ccc;
+    font-size:13px;
+    margin-bottom:25px;
+}
+
+/* NEON PULSE ANIMATION */
+
+@keyframes neonPulse {
+
+  0%{
+    box-shadow:
+      0 0 10px rgba(47, 87, 74, 0.6),
+      0 0 25px rgba(47, 101, 83, 0.4);
+  }
+
+  50%{
+    box-shadow:
+      0 0 20px rgba(37, 88, 71, 0.9),
+      0 0 40px rgba(39, 98, 78, 0.6);
+  }
+
+  100%{
+    box-shadow:
+      0 0 10px rgba(59, 108, 92, 0.6),
+      0 0 25px rgba(59, 113, 95, 0.4);
+  }
+
+}
+
+.auth-card{
+    width:350px;
+    padding:40px;
+
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+
+    border-radius:15px;
+
+    border:1px solid rgba(0,255,170,0.5);
+
+    animation: neonPulse 3s infinite;
+}
+
+/* BACKGROUND PARTICLES */
+
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: linear-gradient(
+        to bottom,
+        #000000,
+        #022f1f
+    );
+
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+}
+
+/* PARTICLE CONTAINER */
+
+.particles{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+/* PARTICLES */
+
+.particles span{
+    position:absolute;
+    width:6px;
+    height:6px;
+
+    background:#00ffaa;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 10px #00ffaa,
+        0 0 20px #00ffaa;
+
+    animation: float 10s linear infinite;
+}
+
+/* FLOAT ANIMATION */
+
+@keyframes float{
+
+    0%{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
+
+}
+.auth-card input{
+
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+
+    border-radius:8px;
+    border:none;
+
+    background:#0b1f18;
+    color:white;
+
+    outline:none;
+
+    border:1px solid rgba(0,255,170,0.4);
+
+    transition:0.25s;
+}
+
+
+/* INPUT FOCUS EXPAND */
+
+.auth-card input:focus{
+
+    transform:scale(1.05);
+
+}
+
