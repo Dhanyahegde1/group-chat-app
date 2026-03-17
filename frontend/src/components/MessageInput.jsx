@@ -61,6 +61,7 @@ function MessageInput({ activeChannel, channelId }) {
         setLoading(false);
       }
     }
+
   return (
 
     <div className="message-input">
@@ -81,7 +82,9 @@ function MessageInput({ activeChannel, channelId }) {
       />
 
       <button onClick={() => document.getElementById("channelFileInput").click()}>
+
        Upload
+
       </button>
 
       {file && (

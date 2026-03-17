@@ -69,7 +69,7 @@ function ChannelList({ activeChannel, onChannelSelect, onDMSelect }) {
 
   return (
     <div className="channel-list">
-      <h3>My Channels</h3>
+      <h3  >My Channels</h3>
 
       <ul>
         {myChannels.map((c) => (
@@ -93,7 +93,7 @@ function ChannelList({ activeChannel, onChannelSelect, onDMSelect }) {
       <button style={{backgroundColor:"#94c9b5"} }onClick={() => setShowCreate(!showCreate)}>+ Create Room</button>
       {showCreate && (
         <div>
-          <input
+          <input style={{backgroundColor:"#dceee7"} }
             placeholder="Channel name"
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
@@ -105,7 +105,10 @@ function ChannelList({ activeChannel, onChannelSelect, onDMSelect }) {
               onChange={(e) => setIsPrivate(e.target.checked)}
             /> Private
           </label>
-          <button style={{backgroundColor:"#94c9b5"} }onClick={handleCreate}>Create</button>
+
+
+          <button style={{backgroundColor:"#94c9b5"} } onClick={handleCreate}>Create</button>
+
           <button style={{backgroundColor:"#94c9b5"} } onClick={() => setShowCreate(false)}>Cancel</button>
         </div>
       )}
@@ -114,7 +117,9 @@ function ChannelList({ activeChannel, onChannelSelect, onDMSelect }) {
       <button 
         onClick={() => { setShowDiscover(!showDiscover); 
           if (!showDiscover) fetchDiscover(); }}
-        style={{ marginTop: "10px" , backgroundColor:"#94c9b5"} }
+
+        style={{ marginTop: "10px", backgroundColor:"#94c9b5" }}
+
       >
         🔍 Discover
       </button>
@@ -125,6 +130,7 @@ function ChannelList({ activeChannel, onChannelSelect, onDMSelect }) {
             <li key={c.id} style={{ display: "flex", justifyContent: "space-between" }}>
               <span> {c.name}</span>
               <button onClick={() => handleJoin(c.id)} style={{ fontSize: "10px",backgroundColor:"#94c9b5" }}>Join</button>
+
             </li>
           ))}
         </ul>

@@ -3,7 +3,7 @@ margin:0;
 padding:0;
 height:100vh;
 background:linear-gradient(135deg,#000000,#022e1f);
-color:white;
+color:rgb(227, 244, 236);
 font-family:Arial;
 }
 
@@ -32,6 +32,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:15px;
+background-color: #025130;
 border-bottom:1px solid #00ff9d;
 }
 
@@ -95,6 +96,7 @@ padding:12px;
 border-radius:20px;
 background-color:#94c9b5;
 border:none;
+background-color:#94c9b5;
 outline:none;
 }
 

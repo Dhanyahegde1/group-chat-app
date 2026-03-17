@@ -99,7 +99,9 @@ useEffect(() => {
         {/* ── Channel chat ── */}
         {activeChannel && (
           <>
-            <div className="chat-header">
+
+            <div className="chat-header" >
+ 
   <h2> {activeChannel}</h2>
   <div className="online-bar">
     {onlineUsers.map((u, i) => (

@@ -28,6 +28,6 @@ urlpatterns = [
 
     path('files/', include('files.file_url')),
     path('notifications/', include('notification.notify_service')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
