@@ -10,7 +10,7 @@ function NotificationBell() {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const res = await axios.get(`http://127.0.0.1:8000/notifications/${userId}/`);
+        const res = await axios.get(`http://192.168.31.133:8000/notifications/${userId}/`);
         setNotifications(res.data);
       } catch (err) {
         console.error("Failed to fetch notifications", err);
@@ -24,7 +24,7 @@ function NotificationBell() {
 
   const handleMarkAllRead = async () => {
     try {
-      await axios.post(`http://127.0.0.1:8000/notifications/${userId}/read-all/`);
+      await axios.post(`http://192.168.31.133:8000/notifications/${userId}/read-all/`);
       setNotifications([]);
       setShowList(false);
     } catch (err) {
@@ -34,7 +34,7 @@ function NotificationBell() {
 
   const handleMarkRead = async (id) => {
     try {
-      await axios.post(`http://127.0.0.1:8000/notifications/read/${id}/`);
+      await axios.post(`http://192.168.31.133:8000/notifications/read/${id}/`);
       setNotifications((prev) => prev.filter((n) => n.id !== id));
     } catch (err) {
       console.error(err);

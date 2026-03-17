@@ -42,9 +42,9 @@ function MessageInput({ activeChannel, channelId }) {
 
     const res = await uploadFile(formData);
 
-    const fileUrl = `http://127.0.0.1:8000/media/${res.data.filename}`;
+    const fileUrl = `http://127.0.0.1:8000/media/uploads/${res.data.filename}`;
     const fileMsg = `📎 [${res.data.filename}](${fileUrl})`;
-
+    console.log("File message:", fileMsg);
     sendMessage(fileMsg, username);
 
     setFile(null);
@@ -75,7 +75,7 @@ function MessageInput({ activeChannel, channelId }) {
       />
 
       <button onClick={() => document.getElementById("channelFileInput").click()}>
-        📎
+        Upload
       </button>
 
       {file && (
