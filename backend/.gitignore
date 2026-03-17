@@ -1,16 +1,30 @@
 # Python
 __pycache__/
 *.pyc
-env/
+venv/
 venv/
 
 # Django
 db.sqlite3
 media/
+*.log
+uploads/
 
 # React
 node_modules/
 build/
+.env.local
 
 # Environment
 .env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Migrations 
+# */migrations/
