@@ -12,3 +12,11 @@
 2026-03-15 01:00:50,115 ERROR django.channels.server HTTP POST /files/upload/ 500 [0.07, 127.0.0.1:53014]
 2026-03-15 01:17:24,088 ERROR django.request Internal Server Error: /files/upload/
 2026-03-15 01:17:24,088 ERROR django.channels.server HTTP POST /files/upload/ 500 [0.05, 127.0.0.1:63606]
+2026-03-16 11:07:35,374 ERROR django.request Internal Server Error: /files/upload/
+2026-03-16 11:07:35,374 ERROR django.channels.server HTTP POST /files/upload/ 500 [0.08, 127.0.0.1:58818]
+2026-03-16 11:30:07,425 ERROR django.request Internal Server Error: /files/upload/
+2026-03-16 11:30:07,425 ERROR django.channels.server HTTP POST /files/upload/ 500 [0.23, 127.0.0.1:65469]
+2026-03-16 11:30:24,939 ERROR django.request Internal Server Error: /files/upload/
+2026-03-16 11:30:24,939 ERROR django.channels.server HTTP POST /files/upload/ 500 [0.09, 127.0.0.1:55094]
+2026-03-16 11:45:11,519 ERROR django.request Internal Server Error: /files/upload/
+2026-03-16 11:45:11,523 ERROR django.channels.server HTTP POST /files/upload/ 500 [0.08, 127.0.0.1:50561]

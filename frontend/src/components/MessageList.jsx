@@ -102,7 +102,7 @@ function MessageList({ activeChannel }) {
           className={msg.user === currentUser ? "message my-message" : "message other-message"}
         >
           <span className="msg-user">{msg.user}</span>
-          <p>{renderMessage(msg.text)}</p>
+         <p>{msg.text && renderMessage(msg.text)}</p>
           <div className="msg-meta">
             <span className="msg-time">{msg.timestamp}</span>
             {msg.user === currentUser && (

@@ -159,7 +159,7 @@ function DMList({ onDMSelect, userId }) {
       {users.map(u => (
         <li
           key={u.id}
-          onClick={() => onDMSelect(u.username)}
+          onClick={() => onDMSelect(u.username, u)}
           style={{ cursor: "pointer" }}
         >
           💬 {u.username}

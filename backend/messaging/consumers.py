@@ -10,10 +10,7 @@ logger = logging.getLogger("websocket")
 User = get_user_model()
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# CHANNEL CHAT CONSUMER  —  only members can connect
-# URL: ws://…/ws/chat/<room_name>/<username>/
-# ─────────────────────────────────────────────────────────────────────────────
+ 
 class ChatConsumer(AsyncWebsocketConsumer):
 
     async def connect(self):
@@ -68,8 +65,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         if event_type == "chat_message":
             message  = data.get("message")
-            username = data.get("username")
-            if not message or not username:
+            username = data.get("username") or self.username
+            if not message:
                 return
             if not await self.check_membership(username, self.room_name):
                 return

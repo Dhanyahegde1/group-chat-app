@@ -15,6 +15,8 @@ def upload_file(request):
     if not file or not username:
         return Response({"error": "file and username required"}, status=400)
 
+    channel_id = int(channel_id) if channel_id and channel_id != "undefined" else None
+    receiver_id = int(receiver_id) if receiver_id and receiver_id != "undefined" else None 
     try:
         uploaded = handle_file_upload(
             file,
