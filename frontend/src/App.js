@@ -4,20 +4,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Chat from "./pages/Chat";
-import axios from "axios";
+// import axios from "axios";
 import JoinPage from "./pages/JoinPage";
 
-const API = axios.create({
-  baseURL: "http://127.0.0.1:8000/api"
-});
-
-export const registerUser = (data) => API.post("/register", data);
-
-export const loginUser = (data) => API.post("/login", data);
-
-export const getChannels = () => API.get("/channels");
-
-export const createChannel = (data) => API.post("/channels", data);
 
 function App() {
   return (

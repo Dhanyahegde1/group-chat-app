@@ -27,6 +27,7 @@ urlpatterns = [
     path('messages/', include('messaging.msgroute')),
 
     path('files/', include('files.file_url')),
+    path('notifications/', include('notification.notify_service')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

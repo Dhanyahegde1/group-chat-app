@@ -144,6 +144,18 @@ class ChatConsumer(AsyncWebsocketConsumer):
             user    = User.objects.get(username=username)
             channel = Channel.objects.get(name=self.room_name)
             Message.objects.create(sender=user, channel=channel, content=message)
+
+            # ← notifications for all members except sender
+            from notification.models import Notification
+            members = ChannelMember.objects.filter(channel=channel).exclude(user=user)
+            for member in members:
+                Notification.objects.create(
+                    recipient=member.user,
+                    sender_username=username,
+                    notification_type='channel',
+                    target=self.room_name,
+                    message_preview=message[:100]
+                )
         except (User.DoesNotExist, Channel.DoesNotExist) as e:
             logger.error(f"save_message error: {e}")
 
@@ -279,6 +291,17 @@ class DMConsumer(AsyncWebsocketConsumer):
             sender    = User.objects.get(username=self.my_username)
             recipient = User.objects.get(username=self.other_username)
             dm = DirectMessage.objects.create(sender=sender, recipient=recipient, content=content)
+            
+            # ← notification for recipient
+            from notification.models import Notification
+            Notification.objects.create(
+                recipient=recipient,
+                sender_username=self.my_username,
+                notification_type='dm',
+                target=self.my_username,
+                message_preview=content[:100]
+            )
+            
             return {"id": dm.id}
         except User.DoesNotExist as e:
             logger.error(f"DM save failed: {e}")

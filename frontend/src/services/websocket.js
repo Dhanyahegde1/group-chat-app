@@ -2,7 +2,7 @@ let socket = null;
 
 export const connectToRoom = (roomName, username, onMessage, onTyping, onHistory, onRead, onOnline, onOffline) => {
   socket = new WebSocket(`ws://127.0.0.1:8000/ws/chat/${roomName}/${username}/`);
-
+  
   socket.onopen = () => console.log("Connected to room:", roomName);
 
   socket.onmessage = (event) => {

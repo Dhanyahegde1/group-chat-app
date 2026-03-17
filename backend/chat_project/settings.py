@@ -14,11 +14,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 # adding cors to connect with frontend
-#CORS_ALLOWED_ORIGINS = [
-   # "http://localhost:3000",
-   # "http://localhost:3001",
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
   #  "http://localhost:3002",
-#]
+]
 ASGI_APPLICATION = "chat_project.asgi.application"
 #adding django channels to installed apps
 
