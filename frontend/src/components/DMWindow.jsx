@@ -24,7 +24,7 @@ function DMWindow({ otherUsername, otherUserId }){
     );
     return () => disconnectDM();
   }, [otherUsername, myUsername]);
-
+// eslint-disable-next-line
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -143,7 +143,7 @@ function DMWindow({ otherUsername, otherUserId }){
           onChange={handleFileChange}
         />
 
-        <button onClick={() => document.getElementById("dmFileInput").click()}>📎</button>
+        <button onClick={() => document.getElementById("dmFileInput").click()}>Upload</button>
 
         {file && (
           <span style={{ fontSize: "12px", color: "#aaa" }}>

@@ -25,7 +25,7 @@ function JoinPage() {
       // Poll every 3 seconds to check if host accepted
       interval = setInterval(async () => {
         try {
-         const res = await axios.get(`http://192.168.31.133:8000/channels/invite/status/${code}/`);
+         const res = await axios.get(`http://127.0.0.1:8000/channels/invite/status/${code}/`);
           if (res.data.status === "accepted") {
             setStatus("accepted");
             clearInterval(interval);
