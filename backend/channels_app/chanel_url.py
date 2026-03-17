@@ -6,7 +6,7 @@ urlpatterns = [
     path('create/', create_channel),
     path('', list_channels),
     path('join/', join_channel),
-    path('mine/', my_channels),
+    path('my/', my_channels),
     path('discover/', discover_channels),
     path('leave/', leave_channel),
     path('invite/generate/', generate_invite),

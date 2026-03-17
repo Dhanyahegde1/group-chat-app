@@ -3,12 +3,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import RegisterSerializer
 from django.contrib.auth import authenticate
+from channels_app.chanels import Channel, ChannelMember
 from users.models import User
 
-# ---------------------------------------------------
 # User Registration API
 # Endpoint: POST /users/register
-# ---------------------------------------------------
 @api_view(['POST'])
 def register(request):
 
@@ -19,21 +18,17 @@ def register(request):
     if serializer.is_valid():
 
         # Save user to database
-        serializer.save()
+        user = serializer.save()
+        try:
+            general = Channel.objects.get(name="General")
+            ChannelMember.objects.get_or_create(user=user, channel=general)
+        except Channel.DoesNotExist:
+            pass
+        return Response({"message": "User registered successfully"}, status=201)
+    return Response(serializer.errors, status=400)
 
-        return Response(
-            {"message": "User registered successfully"},
-            status=status.HTTP_201_CREATED
-        )
-
-    # Return validation errors if input is invalid
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-# ---------------------------------------------------
 # User Login API
 # Endpoint: POST /users/login
-# ---------------------------------------------------
 @api_view(['POST'])
 def login(request):
 

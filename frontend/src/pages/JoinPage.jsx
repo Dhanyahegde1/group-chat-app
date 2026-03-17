@@ -11,7 +11,7 @@ function JoinPage() {
 
   const handleRequestJoin = async () => {
     try {
-      await axios.post(`http://127.0.0.1:8000/channels/invite/join/${code}/`, {
+      await axios.post(`http://127.0.0.1:8000/channels/invite/join/${code}/`, {  // ← add comma and {
         username: username
       });
       setStatus("waiting");
@@ -19,27 +19,25 @@ function JoinPage() {
       setStatus("invalid");
     }
   };
-
   useEffect(() => {
-  let interval;
 
-  if (status === "waiting") {
-    interval = setInterval(async () => {
-      try {
-        const res = await axios.get(`http://127.0.0.1:8000/channels/invite/status/${code}/`);
-
-        if (res.data.status === "accepted") {
-          setStatus("accepted");
-          clearInterval(interval);
-          setTimeout(() => navigate("/chat"), 2000);
-        } else if (res.data.status === "declined") {
-          setStatus("declined");
-          clearInterval(interval);
+    let interval;
+    if (status === "waiting") {
+      // Poll every 3 seconds to check if host accepted
+      interval = setInterval(async () => {
+        try {
+         const res = await axios.get(`http://127.0.0.1:8000/channels/invite/status/${code}/`);
+          if (res.data.status === "accepted") {
+            setStatus("accepted");
+            clearInterval(interval);
+            setTimeout(() => navigate("/chat"), 2000);
+          } else if (res.data.status === "declined") {
+            setStatus("declined");
+            clearInterval(interval);
+          }
+        } catch (error) {
+          console.error(error);
         }
-
-      } catch (error) {
-        console.error(error);
-      }
     }, 3000);
   }
 

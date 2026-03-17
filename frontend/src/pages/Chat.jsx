@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ChannelList from "../components/ChannelList";
 import MessageList from "../components/MessageList";
 import MessageInput from "../components/MessageInput";
 import DMWindow from "../components/DMWindow";
 import axios from "axios";
 import "../styles/styles.css";
+import NotificationBell from "../components/NotificationBell";
 
 function Chat() {
   const [activeChannel, setActiveChannel] = useState(null);
@@ -13,6 +14,13 @@ function Chat() {
   const [showInvite,    setShowInvite]     = useState(false);
   const [pendingInvite, setPendingInvite]  = useState(null);
   const [activeChannelId, setActiveChannelId] = useState(null);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [offlineUsers, setOfflineUsers] = useState([]);
+
+  const handleUsersUpdate = useCallback((online, offline)  => {
+    setOnlineUsers(online);
+    setOfflineUsers(offline);
+}, []); 
 
   const handleInvite = async () => {
   try {
@@ -21,7 +29,8 @@ function Chat() {
     });
     setInviteLink(res.data.invite_link);
     setShowInvite(true);
-  } catch {
+  } 
+  catch {
     alert("Failed to generate invite link");
   }
 };
@@ -34,12 +43,14 @@ useEffect(() => {
       if (res.data.code) {
         setPendingInvite(res.data);
       }
+
     } catch (error) {
       console.error(error);
     }
   }, 3000);
   return () => clearInterval(interval);
 }, [activeChannelId]);
+
 
   const handleRespond = async (action) => {
     try {
@@ -89,9 +100,21 @@ useEffect(() => {
         {activeChannel && (
           <>
             <div className="chat-header">
-              <h2># {activeChannel}</h2>
-              <button className="invite-btn" onClick={handleInvite}>Invite</button>
-            </div>
+  <h2> {activeChannel}</h2>
+  <div className="online-bar">
+    {onlineUsers.map((u, i) => (
+      <span key={i} className="online-user">🟢 {u}</span>
+    ))}
+    {offlineUsers
+      .filter((u) => u !== localStorage.getItem("username"))
+      .map((u, i) => (
+        <span key={i} className="offline-user">🔴 {u}</span>
+      ))
+    }
+  </div>
+   <NotificationBell /> 
+  <button className="invite-btn" onClick={handleInvite}>Invite</button>
+</div>
 
             {showInvite && (
               <div className="invite-popup">
@@ -111,7 +134,7 @@ useEffect(() => {
             )}
 
             
-           <MessageList activeChannel={activeChannel} />
+           <MessageList activeChannel={activeChannel} onUsersUpdate={handleUsersUpdate} />
                 <MessageInput activeChannel={activeChannel} channelId={activeChannelId} />
              
           </>
@@ -122,6 +145,7 @@ useEffect(() => {
           <>
             <div className="chat-header">
               <h2>💬 {activeDM.username}</h2>
+               <NotificationBell />
             </div>
             <DMWindow 
               otherUsername={activeDM.username}
@@ -134,6 +158,7 @@ useEffect(() => {
         {!activeChannel && !activeDM && (
           <div style={{ padding: "40px", color: "#888" }}>
             Select a channel or user to start chatting.
+             <NotificationBell />
           </div>
         )}
 

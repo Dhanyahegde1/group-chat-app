@@ -3,7 +3,6 @@ let socket = null;
 export const connectToRoom = (roomName, username, onMessage, onTyping, onHistory, onRead, onOnline, onOffline) => {
   socket = new WebSocket(`ws://127.0.0.1:8000/ws/chat/${roomName}/${username}/`);
   socket.onopen = () => console.log("Connected to room:", roomName);
-
   socket.onmessage = (event) => {
     const data = JSON.parse(event.data);
     if      (data.type === "chat_history")  onHistory(data.messages);
@@ -29,7 +28,7 @@ export const sendMessage = (message, username) => {
       type: "chat_message",
       message: message,
       username: username,
-      timestamp: new Date().toLocaleTimeString()
+      //timestamp: new Date().toLocaleTimeString()
     }));
   }
 };
@@ -49,6 +48,7 @@ let dmSocket = null;
 
 export const connectToDM = (myUsername, otherUsername, onMessage, onTyping, onHistory) => {
   dmSocket = new WebSocket(`ws://127.0.0.1:8000/ws/dm/${myUsername}/${otherUsername}/`);
+
   dmSocket.onopen = () => console.log(`DM connected: ${myUsername} ↔ ${otherUsername}`);
 
   dmSocket.onmessage = (event) => {
@@ -64,7 +64,6 @@ export const connectToDM = (myUsername, otherUsername, onMessage, onTyping, onHi
 
 export const sendDMMessage = (message) => {
   if (dmSocket && dmSocket.readyState === WebSocket.OPEN) {
-    
     dmSocket.send(JSON.stringify({ type: "dm_message", message }));
   }
 };

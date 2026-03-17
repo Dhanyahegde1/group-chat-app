@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .chanels import Channel, ChannelMember, ChannelInvite
 from users.models import User
-
+import socket
 
 @api_view(['POST'])
 def generate_invite(request):
@@ -12,8 +12,8 @@ def generate_invite(request):
         invite = ChannelInvite.objects.create(channel=channel)
         
         # Get the host IP from the request so it works on any network
-        host = request.get_host().split(':')[0]  # gets your machine's IP
-        invite_link = f"http://{host}:3001/join/{invite.code}"
+        host = socket.gethostbyname(socket.gethostname())
+        invite_link = f"http://{host}:3000/join/{invite.code}"
         
         return Response({"invite_link": invite_link})
     except Channel.DoesNotExist:

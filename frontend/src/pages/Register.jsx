@@ -26,9 +26,10 @@ function Register() {
     await registerUser(form);
     alert("Registered successfully! Please log in.");
     navigate("/");
-  } catch (error) {
-    alert("Registration failed. Username may be taken or password too weak.");
-    console.error(error);
+  }
+  catch (error) {
+  console.log(error.response.data);
+  alert(JSON.stringify(error.response.data));
   }
 };
 

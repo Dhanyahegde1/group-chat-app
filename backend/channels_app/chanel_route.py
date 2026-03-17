@@ -30,7 +30,6 @@ def create_channel(request):
 
     return Response({"message": "Channel created", "channel": channel.name})
 
-
 # List ALL channels (admin/discover use)
 @api_view(['GET'])
 def list_channels(request):

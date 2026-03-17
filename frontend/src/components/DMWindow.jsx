@@ -45,40 +45,12 @@ function DMWindow({ otherUsername, otherUserId }){
     if (e.key === "Enter") handleSend();
   };
 
-  const handleFileChange = async (e) => {
-
-  const selected = e.target.files[0];
-  if (!selected) return;
-
-  const formData = new FormData();
-  formData.append("file", selected);
-  formData.append("username", myUsername);
-  formData.append("receiver_id", otherUserId);
-
-  try {
-
-    const res = await axios.post(
-      "http://127.0.0.1:8000/files/upload/",
-      formData,
-      { headers: { "Content-Type": "multipart/form-data" } }
-    );
-
-    const fileUrl = `http://127.0.0.1:8000/media/${res.data.filename}`;
-    const fileMsg = `📎 [${res.data.filename}](${fileUrl})`;
-
-    sendDMMessage(fileMsg);
-
-  } catch (err) {
-
-    const msg = err.response?.data?.error || "Upload failed.";
-    alert(msg);
-
-  }
-
-};
- console.log("Receiver ID:", otherUserId);
- const handleFileUpload = async () => {
-  if (!file) return alert("No file selected.");
+  const handleFileChange =  (e) => {
+    setFile(e.target.files[0]);
+  };
+  
+  const handleFileUpload = async () => {
+    if (!file) return alert("No file selected.");
 
   const formData = new FormData();
   formData.append("file", file);
@@ -87,28 +59,30 @@ function DMWindow({ otherUsername, otherUserId }){
 
   try {
     setLoading(true);
-
     const res = await axios.post(
       "http://127.0.0.1:8000/files/upload/",
       formData,
       { headers: { "Content-Type": "multipart/form-data" } }
     );
 
-    const fileUrl = `http://127.0.0.1:8000/media/${res.data.filename}`;
+    const fileUrl = `http://127.0.0.1:8000/media/uploads/${res.data.filename}`;
     const fileMsg = `📎 [${res.data.filename}](${fileUrl})`;
 
     sendDMMessage(fileMsg);
 
     setFile(null);
-    document.getElementById("dmFileInput").value = "";
+    document.getElementByID("dmFileInput").value = "";
 
-  } catch (err) {
+  } 
+  catch (err) {
     const msg = err.response?.data?.error || "Upload failed.";
     alert(msg);
-  } finally {
+  }
+  finally{
     setLoading(false);
   }
 };
+
 
   // Render message — if it's a file link, show as clickable
   const renderMessage = (text) => {
